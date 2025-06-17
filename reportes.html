@@ -1,0 +1,50 @@
+<!-- reportes.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reporte de Incidencias</title>
+  <link rel="stylesheet" href="reportes.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center; font-weight: bold;">SEDAPAL</h1>
+    <p style="text-align: center; margin:0;">Equipo administrativo Sur</p>
+    <h2>Reporte de Incidencias</h2>
+
+    <form id="formulario">
+      <label for="ficha">Ficha Usuario:</label>
+      <input type="text" id="ficha" name="ficha" required />
+
+      <label for="nombre">Nombres Completos:</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <label for="area">Área:</label>
+      <input type="text" id="area" name="area" required />
+
+      <label for="detalle">Detalle del Reporte:</label>
+      <textarea id="detalle" name="detalle" required></textarea>
+
+      <label for="imagen">Subir imagen (opcional):</label>
+      <input type="file" id="imagen" /> 
+
+      <input type="hidden" id="imagen_url" name="imagen_url" /> 
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <p class="mensaje-exito" id="mensajeExito" style="display: none;">
+      Reporte enviado con éxito.
+    </p>
+  </div>
+
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("HaIzc513oA4Xy9JG6");
+    })();
+  </script>
+  <script src="reportes.js"></script>
+</body>
+</html>
