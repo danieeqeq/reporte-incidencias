@@ -55,5 +55,14 @@
     })();
   </script>
   <script src="reportes.js"></script>
+
+  <!-- Registro del Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('✅ Service Worker registrado'))
+        .catch(err => console.error('❌ Error al registrar el Service Worker:', err));
+    }
+  </script>
 </body>
 </html>
