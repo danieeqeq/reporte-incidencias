@@ -40,7 +40,7 @@ document.getElementById('formulario').addEventListener('submit', function(e) {
   }
 
   function enviarFormulario() {
-    emailjs.sendForm('service_it3bf5o', 'template_5j0jyhg', formulario)
+    emailjs.sendForm('service_runxke7', 'template_qazaiod', formulario)
       .then(() => {
         loaderText.textContent = '¡Reporte enviado con éxito!'; // ⭐
         setTimeout(() => {
