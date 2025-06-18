@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background-color: #0078C8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,10 +11,64 @@ body {
 .container {
   background-color: white;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 20px;
   width: 100%;
   max-width: 500px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0078C8	;
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="file"],
+form textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  border: 4px solid #0078C8	;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: white;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: vertical;
+  min-height: 44px;
+}
+
+form input[type="text"]:focus,
+form textarea:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 8px #007acc80;
+}
+
+button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #0078C8;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #007acc;
 }
 
 .spinner {
@@ -32,50 +86,29 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-form label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: bold;
-}
-
-form input[type="text"],
-form input[type="file"],
-form textarea {
-  width: 100%;
-  padding: 0.7rem;
-  margin-top: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-family: inherit;
-  font-size: 1rem;
-  box-sizing: border-box;
-  resize: vertical;
-  min-height: 40px;
-}
-
-button {
-  margin-top: 1.5rem;
-  width: 100%;
-  padding: 0.7rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
 .mensaje-exito {
   margin-top: 1rem;
   color: green;
   text-align: center;
+}
+.logo-container {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo-img {
+  max-width: 200px;
+  height: auto;
+  display: inline-block;
+}
+label {
+  display: block;
+  text-align: left;
+  color: #3ba2e7;
+  font-weight: bold;
+  margin-top: 10px;
+} 
+.azul {
+  color: #0078C8;
+  font-weight: bold;
 }
