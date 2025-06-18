@@ -4,23 +4,26 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .container {
   background-color: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 20px;
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.2);
+  box-sizing: border-box;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  color: #0078C8	;
+  margin-bottom: 1.2rem;
+  color: #0078C8;
 }
 
 form label {
@@ -34,9 +37,9 @@ form input[type="file"],
 form textarea {
   width: 100%;
   padding: 0.6rem 1rem;
-  margin-top: 0.5rem;
-  border: 4px solid #0078C8	;
-  border-radius: 50px;
+  margin-top: 0.4rem;
+  border: 3px solid #0078C8;
+  border-radius: 40px;
   font-family: inherit;
   font-size: 1rem;
   background-color: white;
@@ -45,6 +48,11 @@ form textarea {
   transition: border-color 0.3s, box-shadow 0.3s;
   resize: vertical;
   min-height: 44px;
+}
+
+form textarea {
+  border-radius: 20px;
+  min-height: 100px;
 }
 
 form input[type="text"]:focus,
@@ -91,25 +99,61 @@ button:hover {
   color: green;
   text-align: center;
 }
+
 .logo-container {
   text-align: center;
   margin-bottom: 10px;
 }
 
 .logo-img {
-  max-width: 200px;
+  max-width: 150px;
   height: auto;
   display: inline-block;
 }
+
 label {
   display: block;
   text-align: left;
   color: #3ba2e7;
   font-weight: bold;
   margin-top: 10px;
-} 
+}
+
 .azul {
   color: #0078C8;
   font-weight: bold;
-  font-size: 19px; 
+  font-size: 18px;
+}
+
+/* 🔧 Media Query para pantallas pequeñas */
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+    border-radius: 15px;
+  }
+
+  .logo-img {
+    max-width: 120px;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  .azul {
+    font-size: 1rem;
+  }
+
+  form input[type="text"],
+  form input[type="file"],
+  form textarea {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 30px;
+  }
+
+  button {
+    padding: 0.6rem;
+    font-size: 0.95rem;
+  }
 }
