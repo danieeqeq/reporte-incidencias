@@ -103,9 +103,11 @@
       }
 
       function enviarFormulario() {
-        // 1. Registrar en Google Sheets (solo texto)
+        // 1. Guardar en Google Sheets
+        console.log('Enviando a Google Sheets...');
         fetch('https://script.google.com/macros/s/AKfycbygsQRJ1X8AGTE_ldYQ9Xru4E9XkqlTwDfBZsU1vPA4n6ktc2AClzDNFcgL5SGDOLsBzg/exec', {
           method: 'POST',
+          mode: 'no-cors', // <- IMPORTANTE
           headers: {
             'Content-Type': 'application/json'
           },
@@ -115,9 +117,12 @@
             detalle: formulario.detalle.value
           })
         })
-        .then(res => res.text())
-        .then(res => console.log('✅ Guardado en Sheets:', res))
-        .catch(err => console.error('❌ Error al guardar en hoja:', err));
+        .then(() => {
+          console.log('✅ Registro enviado a Google Sheets');
+        })
+        .catch(err => {
+          console.error('❌ Error al guardar en hoja:', err);
+        });
 
         // 2. Enviar correo con EmailJS
         emailjs.sendForm('service_runxke7', 'template_qazaiod', formulario)
@@ -141,7 +146,7 @@
     });
   </script>
 
-  <!-- Service Worker (opcional, para PWA) -->
+  <!-- Service Worker -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
