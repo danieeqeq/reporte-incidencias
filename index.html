@@ -16,27 +16,30 @@
 <body>
   <div class="container">
     <div class="logo-container">
-  <img src="Sedapal.png" alt="Logo Sedapal" class="logo-img">
-</div>
-   <h2 class="azul">Equipo Administración Sur</h2>
+      <img src="Sedapal.png" alt="Logo Sedapal" class="logo-img">
+    </div>
+    <h2 class="azul">Equipo Administración Sur</h2>
     <h2>Reporte de Incidencias</h2>
 
     <form id="formulario">
       <label for="ficha">Ficha Usuario:</label>
       <input type="text" id="ficha" name="ficha" required />
 
-      <label for="nombre">Nombres Completos:</label>
-      <input type="text" id="nombre" name="nombre" required />
+      <label for="area">Unidad Operativa Afectada:</label>
+      <select id="area" name="area" required>
+        <option value="">Selecciona una opción</option>
+        <option value="Inmuebles">Inmuebles</option>
+        <option value="Áreas Verdes">Áreas Verdes</option>
+        <option value="Área de Limpieza">Área de Limpieza</option>
+        <option value="Unidades Propias">Unidades Propias</option>
+        <option value="Otros">Otros</option>
+      </select>
 
-      <label for="area">Área:</label>
-      <input type="text" id="area" name="area" required />
-
-      <label for="detalle">Detalle del Reporte:</label>
+      <label for="detalle">Detallar El Reporte:</label>
       <textarea id="detalle" name="detalle" required></textarea>
 
       <label for="imagen">Subir imagen (opcional):</label>
       <input type="file" id="imagen" />
-
       <input type="hidden" id="imagen_url" name="imagen_url" />
 
       <button type="submit">Enviar</button>
@@ -52,14 +55,16 @@
     </p>
   </div>
 
+  <!-- EmailJS -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    (function(){
+    (function() {
       emailjs.init("B3dccxYRURgWAk6Ls");
     })();
 
     document.getElementById('formulario').addEventListener('submit', function(e) {
       e.preventDefault();
+
       const formulario = this;
       const imagenInput = document.getElementById('imagen');
       const archivo = imagenInput.files[0];
@@ -98,6 +103,23 @@
       }
 
       function enviarFormulario() {
+        // 1. Registrar en Google Sheets (solo texto)
+        fetch('https://script.google.com/macros/s/AKfycbygsQRJ1X8AGTE_ldYQ9Xru4E9XkqlTwDfBZsU1vPA4n6ktc2AClzDNFcgL5SGDOLsBzg/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ficha: formulario.ficha.value,
+            area: formulario.area.value,
+            detalle: formulario.detalle.value
+          })
+        })
+        .then(res => res.text())
+        .then(res => console.log('✅ Guardado en Sheets:', res))
+        .catch(err => console.error('❌ Error al guardar en hoja:', err));
+
+        // 2. Enviar correo con EmailJS
         emailjs.sendForm('service_runxke7', 'template_qazaiod', formulario)
           .then(() => {
             loaderText.textContent = '¡Reporte enviado con éxito!';
@@ -108,7 +130,8 @@
             boton.disabled = false;
             document.getElementById('mensajeExito').style.display = 'block';
             formulario.reset();
-          }, (error) => {
+          })
+          .catch((error) => {
             loader.style.display = 'none';
             loaderText.textContent = 'Error al enviar el formulario';
             boton.disabled = false;
@@ -118,6 +141,7 @@
     });
   </script>
 
+  <!-- Service Worker (opcional, para PWA) -->
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js')
